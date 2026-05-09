@@ -127,13 +127,13 @@ app.post('/candidatar', upload.single('foto'), async (req, res) => {
 
   try {
     await transporter.sendMail(mailOptions);
-    console.log(`✅ Email enviado para ${mailOptions.to} — candidata: ${nome}`);
-    res.json({ success: true, message: 'Candidatura recebida com amor! 💕' });
-  } catch (err) {
-    console.error('❌ Erro ao enviar email:', err.message);
-    // Still return success to user (don't break their experience)
-    res.json({ success: false, message: 'Candidatura recebida, mas houve um erro no email.' });
-  }
+   console.log(`✅ Email enviado para ${mailOptions.to} — candidata: ${nome}`);
+res.json({ success: true, message: 'Candidatura recebida com amor! 💕' });
+} catch (err) {
+  console.error('❌ Erro ao enviar email:', err.message);
+  // Still return success to user (don't break their experience)
+  res.json({ success: false, message: 'Candidatura recebida, mas houve um erro no email.' });
+}
 });
 
 app.get('/', (req, res) => {
@@ -148,3 +148,4 @@ app.listen(PORT, () => {
   console.log(`🌹 Servidor rodando em: http://localhost:${PORT}`);
   console.log(`📧 Emails serão enviados para: ${process.env.EMAIL_DESTINO || process.env.EMAIL_USER || 'Configure o .env!'}\n`);
 });
+
